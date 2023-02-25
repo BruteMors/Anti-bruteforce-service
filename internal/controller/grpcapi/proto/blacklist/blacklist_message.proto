@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package blacklist;
+
+option go_package = "internal/controller/grpcapi/blacklistpb";
+
+message IpNetwork {
+  string ip = 1;
+  string mask = 2;
+}

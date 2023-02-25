@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package blacklist;
+
+option go_package = "internal/controller/grpcapi/blacklistpb";
+
+import "blacklist_message.proto";
+
+message AddIpRequest {
+  IpNetwork ip_network = 1;
+}
+
+message AddIpResponse {
+  bool is_add_ip = 1;
+}
+
+message RemoveIPRequest {
+  IpNetwork ip_network = 1;
+}
+
+message RemoveIPResponse {
+  bool is_remove_ip = 1;
+}
+
+message GetIpListRequest {
+
+}
+
+message GetIpListResponse {
+  IpNetwork ip_network = 1;
+}
+
+service BlackListService {
+  rpc AddIp (AddIpRequest) returns (AddIpResponse);
+  rpc RemoveIp (RemoveIPRequest) returns (RemoveIPResponse);
+  rpc GetIpList (GetIpListRequest) returns (stream GetIpListResponse);
+}

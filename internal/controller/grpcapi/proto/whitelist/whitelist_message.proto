@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package whitelist;
+
+option go_package = "internal/controller/grpcapi/whitelistpb";
+
+message IpNetwork {
+  string ip = 1;
+  string mask = 2;
+}

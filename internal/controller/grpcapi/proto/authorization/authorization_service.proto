@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package authorization;
+
+option go_package = "internal/controller/grpcapi/authorizationpb";
+
+import "authorization_message.proto";
+
+message AuthorizationRequest {
+  Request request = 1;
+}
+
+message AuthorizationResponse {
+  bool is_allow = 1;
+}
+
+service Authorization {
+  rpc TryAuthorization(AuthorizationRequest) returns (AuthorizationResponse);
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package bucket;
+
+option go_package = "internal/controller/grpcapi/bucketpb";
+
+import "bucket_message.proto";
+
+message ResetBucketRequest {
+  Request request = 1;
+}
+
+message ResetBucketResponse {
+  bool resetLogin = 1;
+  bool resetIp = 2;
+}
+
+service BucketService {
+  rpc ResetBucket(ResetBucketRequest) returns (ResetBucketResponse);
+}
