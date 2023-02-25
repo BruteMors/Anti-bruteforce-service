@@ -54,8 +54,6 @@ func NewAntiBruteforceApp(logger *zap.SugaredLogger, cfg *config.Config) *AntiBr
 	router := httpapi.NewRouter(auth, blacklist, whitelist, bucket, logger)
 
 	cli := clinterface.New(authorizationService, whitelistService, blackListService)
-	//router.Handler(http.MethodGet, "/swagger", http.RedirectHandler("/swagger/index.html", http.StatusMovedPermanently))
-	//router.Handler(http.MethodGet, "/swagger/*any", httpSwagger.WrapHandler)
 	return &AntiBruteforceApp{grpcBlackListServer: grpcBlackListServer, grpcWhiteListServer: grpcWhiteListServer, grpcBucketServer: grpcBucketServer, grpcAuthorizationServer: grpcAuthorizationServer, cli: cli, router: router, clientDb: clientDb, logger: logger, cfg: cfg}
 }
 
