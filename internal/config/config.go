@@ -22,7 +22,7 @@ type Config struct {
 		LogLevel string `env:"LOGLEVEL" env-default:"debug"`
 	}
 	Database struct {
-		Host     string `env:"DB_HOST" env-default:"host.docker.internal"`
+		Host     string `env:"DB_HOST" env-default:"localhost"`
 		DbName   string `env:"DB_NAME" env-default:"anti-bruteforce-service-database"`
 		Port     string `env:"DB_PORT" env-default:"5433"`
 		User     string `env:"DB_USER" env-default:"postgres"`

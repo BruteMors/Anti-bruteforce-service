@@ -28,7 +28,7 @@ func (a *Authorization) TryAuthorization(rw http.ResponseWriter, r *http.Request
 		rw.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	isValidate := a.validateRequest(request)
+	isValidate := ValidateRequest(request)
 	if !isValidate {
 		a.logger.Info("Invalid input request received from client")
 		rw.WriteHeader(http.StatusBadRequest)
@@ -61,14 +61,4 @@ func (a *Authorization) TryAuthorization(rw http.ResponseWriter, r *http.Request
 		rw.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-}
-
-func (a *Authorization) validateRequest(request entity.Request) bool {
-	if request.Login == "" || request.Password == "" {
-		return false
-	}
-	if !isCorrectIP(request.Ip) {
-		return false
-	}
-	return true
 }

@@ -22,7 +22,7 @@ func NewWhiteList(store WhiteListStore, logger *zap.SugaredLogger) *WhiteList {
 
 func (b *WhiteList) AddIP(network entity.IpNetwork) error {
 	b.logger.Infoln("Get prefix")
-	prefix, err := getPrefix(network.Ip, network.Mask)
+	prefix, err := GetPrefix(network.Ip, network.Mask)
 	if err != nil {
 		return err
 	}
@@ -35,7 +35,7 @@ func (b *WhiteList) AddIP(network entity.IpNetwork) error {
 
 func (b *WhiteList) RemoveIP(network entity.IpNetwork) error {
 	b.logger.Infoln("Get prefix")
-	prefix, err := getPrefix(network.Ip, network.Mask)
+	prefix, err := GetPrefix(network.Ip, network.Mask)
 	if err != nil {
 		return err
 	}

@@ -78,7 +78,7 @@ func (a *Authorization) TryAuthorization(request entity.Request) (bool, error) {
 
 func (a *Authorization) checkIpByNetworkList(ip string, ipNetworkList []entity.IpNetwork) (bool, error) {
 	for _, network := range ipNetworkList {
-		prefix, err := getPrefix(ip, network.Mask)
+		prefix, err := GetPrefix(ip, network.Mask)
 		if err != nil {
 			return false, err
 		}
