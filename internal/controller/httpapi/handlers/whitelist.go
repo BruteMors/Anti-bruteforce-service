@@ -3,7 +3,6 @@ package handlers
 import (
 	"Anti-bruteforce-service/internal/domain/entity"
 	"Anti-bruteforce-service/internal/domain/service"
-	"errors"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/julienschmidt/httprouter"
 	"go.uber.org/zap"
@@ -37,7 +36,7 @@ func (a *WhiteList) AddIP(rw http.ResponseWriter, r *http.Request, ps httprouter
 	}
 	err = a.service.AddIP(inputIp)
 	if err != nil {
-		if errors.Is(err, ipAlreadyExist) {
+		if err.Error() == ipAlreadyExist.Error() {
 			a.logger.Info(err)
 			rw.WriteHeader(http.StatusBadRequest)
 			_, err = rw.Write([]byte(err.Error()))
