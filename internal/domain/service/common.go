@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func getPrefix(inputIp string, inputMask string) (string, error) {
+func GetPrefix(inputIp string, inputMask string) (string, error) {
 	ip := strings.Split(inputIp, ".")
 	mask := strings.Split(inputMask, ".")
 	var prefix string
