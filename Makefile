@@ -5,6 +5,11 @@ gen:
 	protoc --proto_path=internal/controller/grpcapi/proto/bucket internal/controller/grpcapi/proto/bucket/*.proto  --go_out=. --go_opt=paths=import --go-grpc_out=. --go-grpc_opt=paths=import
 	protoc --proto_path=internal/controller/grpcapi/proto/authorization internal/controller/grpcapi/proto/authorization/*.proto  --go_out=. --go_opt=paths=import --go-grpc_out=. --go-grpc_opt=paths=import
 
+.PHONY: mock.gen
+mock.gen:
+	mockgen -source=internal/domain/service/blacklist.go -destination=internal/store/postgressql/adapters/mocks/mock_blacklist.go
+	mockgen -source=internal/domain/service/whitelist.go -destination=internal/store/postgressql/adapters/mocks/mock_whitelist.go
+
 .PHONY: clean
 clean:
 	rm -f internal/controller/grpcapi/blacklistpb/*
@@ -39,6 +44,16 @@ stop:
 .PHONY: lint
 lint:
 	golangci-lint run
+
+.PHONY: cover
+cover:
+	go test -short -count=1 -race -coverprofile=coverage.out ./...
+	go tool cover -func=coverage.out
+	rm 	coverage.out
+
+.PHONY: test
+test:
+	go test -race ./...
 
 .PHONY: migrate
 migrate:
