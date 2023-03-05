@@ -22,7 +22,7 @@ func NewBlackList(store BlackListStore, logger *zap.SugaredLogger) *BlackList {
 
 func (b *BlackList) AddIP(network entity.IpNetwork) error {
 	b.logger.Infoln("Get prefix")
-	prefix, err := getPrefix(network.Ip, network.Mask)
+	prefix, err := GetPrefix(network.Ip, network.Mask)
 	if err != nil {
 		return err
 	}
@@ -35,7 +35,7 @@ func (b *BlackList) AddIP(network entity.IpNetwork) error {
 
 func (b *BlackList) RemoveIP(network entity.IpNetwork) error {
 	b.logger.Infoln("Get prefix")
-	prefix, err := getPrefix(network.Ip, network.Mask)
+	prefix, err := GetPrefix(network.Ip, network.Mask)
 	if err != nil {
 		return err
 	}
