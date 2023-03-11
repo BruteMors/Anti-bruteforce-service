@@ -28,6 +28,7 @@ func (a *Bucket) ResetBucket(rw http.ResponseWriter, r *http.Request, ps httprou
 		rw.WriteHeader(http.StatusBadRequest)
 		return
 	}
+	request.Password = "empty"
 	isValidate := ValidateRequest(request)
 	if !isValidate {
 		a.logger.Info("Invalid input request received from client")

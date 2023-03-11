@@ -27,7 +27,7 @@ func (s *BucketServer) ResetBucket(ctx context.Context, req *bucketpb.ResetBucke
 		Password: req.GetRequest().GetPassword(),
 		Ip:       req.GetRequest().GetIp(),
 	}
-
+	request.Password = "empty"
 	if !handlers.ValidateRequest(request) {
 		return nil, errors.New("invalid input request received from client")
 	}
